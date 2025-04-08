@@ -1,0 +1,435 @@
+:root {
+  /* Light theme colors */
+  --neutral-900: hsl(227, 75%, 14%);
+  --neutral-800: hsl(226, 25%, 17%);
+  --neutral-700: hsl(225, 23%, 24%);
+  --neutral-600: hsl(226, 11%, 37%);
+  --neutral-300: hsl(0, 0%, 78%);
+  --neutral-200: hsl(217, 61%, 90%);
+  --neutral-100: hsl(0, 0%, 93%);
+  --neutral-0: hsl(200, 60%, 99%);
+  
+  --red-400: hsl(3, 86%, 64%);
+  --red-500: hsl(3, 71%, 56%);
+  --red-700: hsl(3, 77%, 44%);
+  
+  /* Default (light) theme settings */
+  --bg-gradient: linear-gradient(180deg, #EBF2FC 0%, #EEF8F9 100%);
+  --card-bg: var(--neutral-0);
+  --text-primary: var(--neutral-900);
+  --text-secondary: var(--neutral-600);
+  --card-border: var(--neutral-200);
+  --switch-bg: var(--neutral-100);
+  --btn-bg: var(--neutral-200);
+  --btn-active-bg: var(--neutral-900);
+  --btn-active-text: var(--neutral-0);
+  --btn-hover-bg: var(--neutral-300);
+  --tab-btn-text: var(--neutral-600);
+  --tab-btn-active-text: var(--neutral-0);
+  --remove-btn-text: var(--red-500);
+  --remove-btn-hover: var(--red-700);
+  --header-bg: transparent;
+  --filter-btn-bg: var(--neutral-200);
+  --filter-btn-active: var(--red-500);
+}
+
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(180deg, #040918 0%, #091540 100%);
+  --card-bg: var(--neutral-800);
+  --text-primary: var(--neutral-0);
+  --text-secondary: var(--neutral-300);
+  --card-border: var(--neutral-700);
+  --switch-bg: var(--neutral-700);
+  --btn-bg: var(--neutral-700);
+  --btn-active-bg: var(--neutral-0);
+  --btn-active-text: var(--neutral-900);
+  --btn-hover-bg: var(--neutral-600);
+  --tab-btn-text: var(--neutral-300);
+  --tab-btn-active-text: var(--neutral-900);
+  --remove-btn-text: var(--red-400);
+  --remove-btn-hover: var(--red-500);
+  --header-bg: var(--neutral-900);
+  --filter-btn-bg: hsl(230, 23%, 21%);
+  --filter-btn-active: var(--red-500);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding: 0;
+  transition: background 0.3s ease;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  background-color: var(--header-bg);
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+}
+
+#theme-toggle img {
+  width: 24px;
+  height: 24px;
+}
+
+html[data-theme="dark"] .sun-icon {
+  display: block;
+}
+
+html[data-theme="dark"] .moon-icon {
+  display: none;
+}
+
+html[data-theme="light"] .sun-icon {
+  display: none;
+}
+
+html[data-theme="light"] .moon-icon {
+  display: block;
+}
+
+/* Main content */
+main {
+  flex: 1;
+  width: 100%;
+}
+
+.extensions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  background-color: var(--filter-btn-bg);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--neutral-300);
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background-color: var(--filter-btn-active);
+  color: var(--neutral-0);
+}
+
+.filter-btn.active {
+  background-color: var(--filter-btn-active);
+  color: var(--neutral-0);
+}
+
+/* Extensions grid */
+.extensions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.no-extensions {
+  color: var(--text-secondary);
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 24px;
+}
+
+.extension-card {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--card-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  position: relative;
+  height: 100%;
+  opacity: 1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.extension-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.extension-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.extension-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.extension-logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.extension-content {
+  flex: 1;
+}
+
+.extension-name {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.extension-description {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+.extension-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.remove-btn {
+  background-color: var(--filter-btn-bg);
+  border: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 25px;
+  transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+.remove-btn:focus {
+  outline: 2px solid var(--remove-btn-text);
+  outline-offset: 2px;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--switch-bg);
+  transition: .3s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--red-500);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 0 2px var(--red-400);
+}
+
+/* Logo in dark mode - simplified */
+[data-theme="dark"] .extension-logo {
+  background-color: transparent;
+}
+
+/* Logo in light mode - simplified */
+[data-theme="light"] .extension-logo {
+  background-color: transparent;
+}
+
+/* Footer */
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  margin-top: 40px;
+  color: var(--text-secondary);
+}
+
+.attribution a {
+  color: var(--red-500);
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+}
+
+/* Focus states for accessibility */
+.filter-btn:focus-visible {
+  outline: 2px solid var(--btn-active-bg);
+  outline-offset: 2px;
+}
+
+#theme-toggle:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* Animation effects for cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.extension-card {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .extensions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  header {
+    margin-bottom: 24px;
+    padding: 16px;
+  }
+  
+  .extensions-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .filter-buttons {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 600px) {
+  .extensions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .extension-card {
+    padding: 16px;
+  }
+  
+  .extension-description {
+    margin-bottom: 16px;
+  }
+} 
