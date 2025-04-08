@@ -19,7 +19,7 @@
   --text-primary: var(--neutral-900);
   --text-secondary: var(--neutral-600);
   --card-border: var(--neutral-200);
-  --switch-bg: var(--neutral-100);
+  --switch-bg: var(--neutral-300);
   --btn-bg: var(--neutral-200);
   --btn-active-bg: var(--neutral-900);
   --btn-active-text: var(--neutral-0);
@@ -30,6 +30,7 @@
   --remove-btn-hover: var(--red-700);
   --header-bg: transparent;
   --filter-btn-bg: var(--neutral-200);
+  --filter-btn-color: var(--neutral-700);
   --filter-btn-active: var(--red-500);
 }
 
@@ -50,6 +51,7 @@
   --remove-btn-hover: var(--red-500);
   --header-bg: var(--neutral-900);
   --filter-btn-bg: hsl(230, 23%, 21%);
+  --filter-btn-color: var(--neutral-200);
   --filter-btn-active: var(--red-500);
 }
 
@@ -172,7 +174,7 @@ h2 {
   cursor: pointer;
   font-weight: 500;
   font-size: 14px;
-  color: var(--neutral-300);
+  color: var(--filter-btn-color);
   transition: all 0.2s ease;
 }
 
@@ -416,7 +418,7 @@ input:focus + .slider {
   
   .filter-buttons {
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 }
 
